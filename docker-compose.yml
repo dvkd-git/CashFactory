@@ -73,6 +73,10 @@ services:
     Bitping:
         image: bitping/bitpingd:latest
         restart: always
+        entrypoint: /bin/sh -c
+        command: |
+              "/app/bitpingd login --email 'dangvankhanhduy@gmail.com' --password '23042001' && \
+              /app/bitpingd"
         volumes:
             - ./data/bitping:/root/.bitping
         networks:
