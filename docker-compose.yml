@@ -36,15 +36,15 @@ services:
     #End of IproyalPawns section
 
     #Start of Peer2profit section (remove this if Peer2profit not wanted)
-    Peer2profit:
-        image: enwaiax/peer2profit:latest
-        restart: always
-        environment:
-            - email=$PEER2PROFIT_EMAIL
-            - use_proxy=false
-        networks:
-            default:
-                ipv4_address: 172.106.0.50
+    #Peer2profit:
+    #    image: enwaiax/peer2profit:latest
+    #    restart: always
+    #    environment:
+    #        - email=$PEER2PROFIT_EMAIL
+    #        - use_proxy=false
+    #    networks:
+    #        default:
+    #            ipv4_address: 172.106.0.50
     #End of Peer2profit section
 
     #Start of Packetstream section (remove this if Packetstream not wanted)
@@ -57,7 +57,6 @@ services:
             default:
                 ipv4_address: 172.106.0.60
     Packetstream_Watchtower:
-            - Packetstream_PsClient
         image: containrrr/watchtower
         command: --cleanup --include-stopped --revive-stopped --interval 60 --scope PacketStream ${_COMPOSE_PROJECT_NAME}_Packetstream_PsClient_${_COMPOSE_PROJECT_STACK_ID}
         labels:
@@ -72,7 +71,7 @@ services:
     
     #Start of Bitping section (remove this if Bitping not wanted)
     Bitping:
-        image: bitping/bitping-node:latest
+        image: bitping/bitpingd:latest
         restart: always
         volumes:
             - ./data/bitping:/root/.bitping
@@ -83,7 +82,7 @@ services:
 
     #Start of TraffMonetizer section (remove this if TraffMonetizer not wanted)
     TraffMonetizer:
-        image: traffmonetizer/cli_v2:latest
+        image: traffmonetizer/cli_v2:arm64v8:latest
         restart: always
         command: start accept --token ${TRAFFMONETIZER_TOKEN}
         networks:
@@ -135,7 +134,6 @@ services:
             default:
                 ipv4_address: 172.106.0.130
     EarnFm_Watchtower:
-            - EarnFm_Client
         image: containrrr/watchtower
         command: --cleanup --include-stopped --revive-stopped --interval 60 --scope EarnFm ${_COMPOSE_PROJECT_NAME}_EarnFm_Client_${_COMPOSE_PROJECT_STACK_ID}
         labels:
