@@ -1,12 +1,3 @@
-#######################################################################
-# File name : docker-compose.yml
-# Author : Olivier Galand (31/12/2021)
-# Author email : galand.olivier.david@gmail.com
-# Project : CashFactory
-# Project repository : https://github.com/OlivierGaland/CashFactory
-# 
-# Docker-compose file of CashFactory
-#######################################################################
 version: '3.5'
 
 services:
